@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Mastery - Learn JavaScript From Zero to Advanced</title>
+  <meta name="description" content="Interactive JavaScript Learning Platform from complete scratch to advanced mastery with live code sandbox, visualizers, challenges, and quizzes.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Design System -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="app-header">
+    <div class="brand">
+      <button id="toggle-sidebar-btn" class="header-btn" title="Toggle Curriculum Sidebar">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="brand-icon">JS</div>
+      <h1>JS Mastery</h1>
+      <span class="brand-tag">Interactive Hub</span>
+    </div>
+
+    <div class="header-controls">
+      <div class="user-stat-badge stat-xp">
+        <i class="fa-solid fa-bolt"></i>
+        <span id="user-xp">0 XP</span>
+      </div>
+      <div class="user-stat-badge stat-streak">
+        <i class="fa-solid fa-fire"></i>
+        <span id="user-streak">1 Day Streak</span>
+      </div>
+      <button id="open-cheatsheet-btn" class="header-btn">
+        <i class="fa-solid fa-book-bookmark"></i> Cheatsheet
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    
+    <!-- Curriculum Sidebar -->
+    <aside id="curriculum-sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">Course Curriculum</div>
+        <div class="progress-bar-container">
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+        <div id="progress-percent" class="progress-text">0% Completed</div>
+      </div>
+      <!-- Dynamic Module & Lesson List inserted by app.js -->
+    </aside>
+
+    <!-- Workspace View -->
+    <main class="workspace">
+      
+      <!-- Top Workspace Nav & Tabs -->
+      <nav class="workspace-nav">
+        <div class="tab-group">
+          <button class="tab-btn active" data-tab="lesson">
+            <i class="fa-solid fa-book-open"></i> Lesson & Editor
+          </button>
+          <button class="tab-btn" data-tab="visualizer">
+            <i class="fa-solid fa-diagram-project"></i> Event Loop Visualizer
+          </button>
+          <button class="tab-btn" data-tab="quiz">
+            <i class="fa-solid fa-list-check"></i> Practice Quiz
+          </button>
+        </div>
+
+        <div class="nav-controls">
+          <button id="prev-lesson-btn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+          <button id="next-lesson-btn" class="nav-btn">Next <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </nav>
+
+      <!-- TAB 1: LESSON & CODE EDITOR -->
+      <div id="tab-lesson" class="tab-pane active">
+        
+        <!-- Left Pane: Lesson & Challenge Text -->
+        <div class="pane-left">
+          <span id="lesson-module-tag" class="module-tag">Module 1</span>
+          <h2 id="lesson-title" class="lesson-h2">Variables: let, const & var</h2>
+          <div id="lesson-content" class="markdown-body">
+            <!-- Dynamic lesson content parsed from markdown -->
+          </div>
+
+          <!-- Interactive Coding Challenge -->
+          <div class="challenge-box">
+            <div id="challenge-instructions">
+              <!-- Dynamic Challenge Instructions -->
+            </div>
+            <div class="challenge-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+              <button id="submit-challenge-btn" class="btn-action btn-verify">
+                <i class="fa-solid fa-check-double"></i> Verify Challenge
+              </button>
+              <button id="show-solution-btn" class="btn-action">
+                <i class="fa-solid fa-lightbulb"></i> Show Solution
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Pane: Interactive Code Editor & Console Output -->
+        <div class="pane-right">
+          <div class="editor-header">
+            <span class="editor-title"><i class="fa-solid fa-code"></i> Interactive JavaScript Playground</span>
+            <div class="editor-actions">
+              <button id="reset-code-btn" class="btn-action" title="Reset Starter Code">
+                <i class="fa-solid fa-rotate-left"></i> Reset
+              </button>
+              <button id="run-code-btn" class="btn-action btn-run">
+                <i class="fa-solid fa-play"></i> Run Code
+              </button>
+            </div>
+          </div>
+
+          <div class="code-editor-container">
+            <textarea id="code-editor" class="code-textarea" spellcheck="false" placeholder="// Write your JavaScript code here..."></textarea>
+          </div>
+
+          <div class="console-container">
+            <div class="console-header">
+              <span><i class="fa-solid fa-terminal"></i> Console Output</span>
+            </div>
+            <div id="console-output" class="console-output">
+              <div class="console-welcome">> Click 'Run Code' to execute JavaScript live...</div>
+            </div>
+            <div id="challenge-status" class="challenge-status">
+              <i class="fa-solid fa-info-circle"></i> Complete the code in the editor and click <strong>Verify Challenge</strong>.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 2: INTERACTIVE VISUALIZER -->
+      <div id="tab-visualizer" class="tab-pane">
+        <div class="vis-header">
+          <h2><i class="fa-solid fa-diagram-project" style="color: var(--accent-cyan)"></i> Event Loop & Concurrency Visualizer</h2>
+          <div class="vis-controls">
+            <button id="el-reset-btn" class="header-btn"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            <button id="el-next-btn" class="header-btn"><i class="fa-solid fa-forward-step"></i> Step Next</button>
+            <button id="el-play-btn" class="header-btn" style="color: var(--accent-cyan)"><i class="fa-solid fa-play"></i> Auto Play</button>
+          </div>
+        </div>
+
+        <div class="vis-grid">
+          <!-- Call Stack Card -->
+          <div class="vis-card">
+            <div class="vis-card-title"><i class="fa-solid fa-layer-group"></i> Call Stack</div>
+            <div id="el-callstack" class="vis-box">
+              <div class="vis-empty">Stack Empty</div>
+            </div>
+          </div>
+
+          <!-- Web APIs Card -->
+          <div class="vis-card">
+            <div class="vis-card-title"><i class="fa-solid fa-globe"></i> Web APIs (Timers, Fetch)</div>
+            <div id="el-webapi" class="vis-box">
+              <div class="vis-empty">No Web APIs Active</div>
+            </div>
+          </div>
+
+          <!-- Microtask Queue Card -->
+          <div class="vis-card">
+            <div class="vis-card-title"><i class="fa-solid fa-bolt"></i> Microtask Queue (Promises)</div>
+            <div id="el-microtask" class="vis-box">
+              <div class="vis-empty">Microtask Queue Empty</div>
+            </div>
+          </div>
+
+          <!-- Macrotask Queue Card -->
+          <div class="vis-card">
+            <div class="vis-card-title"><i class="fa-solid fa-list-check"></i> Task Queue (Macrotasks)</div>
+            <div id="el-macrotask" class="vis-box">
+              <div class="vis-empty">Task Queue Empty</div>
+            </div>
+          </div>
+
+          <!-- Explanation Step Description -->
+          <div class="vis-desc-card">
+            <strong style="color: var(--accent-cyan);">Current Execution Step:</strong>
+            <div id="el-description" style="margin-top: 0.4rem;">Click 'Step Next' or 'Auto Play' to step through the Event Loop lifecycle.</div>
+          </div>
+
+          <!-- Event Loop Execution Logs -->
+          <div class="vis-card" style="grid-column: span 2;">
+            <div class="vis-card-title"><i class="fa-solid fa-terminal"></i> Visualizer Output Console</div>
+            <div id="el-logs" class="vis-box" style="min-height: 80px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: PRACTICE QUIZ -->
+      <div id="tab-quiz" class="tab-pane">
+        <div class="quiz-wrapper">
+          <h2 style="margin-bottom: 1.5rem; text-align: center;"><i class="fa-solid fa-graduation-cap" style="color: var(--accent-amber)"></i> Lesson Knowledge Check</h2>
+          <div id="quiz-container">
+            <!-- Dynamic quiz questions -->
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Cheatsheet Modal Drawer -->
+  <div id="cheatsheet-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fa-solid fa-book-bookmark" style="color: var(--accent-cyan)"></i> JavaScript Quick Reference Cheatsheet</h2>
+        <input type="text" id="cheatsheet-search" class="search-input" placeholder="Search syntax, methods, array operations...">
+        <button id="close-cheatsheet-btn" class="header-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="cheatsheet-list">
+        <!-- Dynamic Cheatsheet Content -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="curriculum.js"></script>
+  <script src="cheatsheet.js"></script>
+  <script src="visualizer.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
